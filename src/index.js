@@ -19,7 +19,7 @@ window.onload = () => {
   canvas.width = parseInt(paint_style.getPropertyValue('width'));
   canvas.height = parseInt(paint_style.getPropertyValue('height'));
 
-  const canvasBtnInstance = new CanvasButton(ctx, canvas);
+  let canvasBtnInstance;
 
   var mouse = { x: 0, y: 0 };
 
@@ -109,6 +109,7 @@ window.onload = () => {
     drawHorizontal = false;
     drawVertical = false;
     initiateDragging = true
+    canvasBtnInstance = new CanvasButton(ctx, canvas);
   }
 
 }
