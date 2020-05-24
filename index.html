@@ -1,19 +1,62 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
 <html>
-    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
-    <!-- we import arjs version without NFT but with marker + location based support -->
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <body style="margin : 0px; overflow: hidden;">
-        <a-scene embedded arjs>
-        <a-marker preset="hiro">
-            <a-entity
-            position="0 -1 0"
-            scale="0.05 0.05 0.05"
-            gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
-            ></a-entity>
-        </a-marker>
-        <a-entity camera></a-entity>
-        </a-scene>
-    </body>
+
+<head>
+    <title>Konva demo</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        #container {
+            margin: "10%";
+            width: 300px;
+            height: 400px;
+        }
+
+        #desc {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+    </style>
+
+<div>
+    <ol>
+        <li> Click on Horizontal Button & Draw Horizontal button</li>
+        <li> Click on Vertical Button & Draw Vertical Lines button</li>
+        <li> Click on Drag Image to place the item on line</li>
+    </ol>
+</div>
+    <button id="horizontal_btn">
+        Horizontal
+    </button>
+    <button id="vertical_btn">
+        Vertical
+    </button>
+
+    <button id="drag_img_btn">
+        Drag Image
+    </button>
+
+    <br/>
+    <img id="img_local" src="./src/babys-dummy-vector-1797098.jpg" width="20px" height="20px" >
+
+    <br/>
+    <br/>
+    <div id="container">
+
+        <canvas id="myCanvas" style="width: 300px;height: 400px;border: 2px red solid;"></canvas>
+
+    </div>
+    <script src="src/index.js"></script>
+    
+</body>
+
 </html>
