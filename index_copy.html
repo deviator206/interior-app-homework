@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <title>Konva demo</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        #container {
+            margin: "10%";
+            width: 300px;
+            height: 400px;
+        }
+
+        #desc {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+    </style>
+
+<div>
+    <ol>
+        <li> Click on Horizontal Button & Draw Horizontal button</li>
+        <li> Click on Vertical Button & Draw Vertical Lines button</li>
+        <li> Click on Drag Image to place the item on line</li>
+    </ol>
+</div>
+    <button id="horizontal_btn">
+        Horizontal
+    </button>
+    <button id="vertical_btn">
+        Vertical
+    </button>
+
+    <button id="drag_img_btn">
+        Drag Image
+    </button>
+
+    <br/>
+    <img id="img_local" src="./src/babys-dummy-vector-1797098.jpg" width="20px" height="20px" >
+
+    <br/>
+    <br/>
+    <div id="container">
+
+        <canvas id="myCanvas" style="width: 300px;height: 400px;border: 2px red solid;"></canvas>
+
+    </div>
+    <script src="src/index.js"></script>
+    
+</body>
+
+</html>
