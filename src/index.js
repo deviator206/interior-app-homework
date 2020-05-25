@@ -22,8 +22,18 @@ window.onload = () => {
   let canvasBtnInstance;
 
   var mouse = { x: 0, y: 0 };
+  ctx.lineWidth = 3;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = '#00CC99';
 
-  canvas.addEventListener('mousemove', function (e) {
+
+
+
+
+
+
+  const onMouseMove = function (e) {
     if (initiateDragging) {
       mouse.x = e.pageX - this.offsetLeft;
       mouse.y = e.pageY - this.offsetTop;
@@ -34,22 +44,19 @@ window.onload = () => {
       mouse.y = e.pageY - this.offsetTop;
       mouse.x = mouseX;
     }
-
-
-
-  }, false);
-  canvas.addEventListener('mouseout', function (e) {
+  }
+  const onMouseOut = function (e) {
     initiateMouseDown = false;
     drawHorizontal = false;
     drawVertical = false;
-  }, false);
+  }
 
-  ctx.lineWidth = 3;
-  ctx.lineJoin = 'round';
-  ctx.lineCap = 'round';
-  ctx.strokeStyle = '#00CC99';
+  const onMouseUp = function () {
+    initiateMouseDown = false;
+    canvas.removeEventListener('mousemove', onPaint, false);
+  }
 
-  canvas.addEventListener('mousedown', function (e) {
+  const onMouseDown = function (e) {
     if (!initiateMouseDown) {
       mouseX = -1;
       mouseY = -1;
@@ -64,12 +71,7 @@ window.onload = () => {
     ctx.beginPath();
     ctx.moveTo((mouseX !== -1) ? mouseX : mouse.x, (mouseY !== -1) ? mouseY : mouse.y);
     canvas.addEventListener('mousemove', onPaint, false);
-  }, false);
-
-  canvas.addEventListener('mouseup', function () {
-    initiateMouseDown = false;
-    canvas.removeEventListener('mousemove', onPaint, false);
-  }, false);
+  }
 
   var onPaint = function () {
     if (initiateDragging) {
@@ -82,15 +84,6 @@ window.onload = () => {
     ctx.stroke();
   }
 
-
-
-  canvas.addEventListener('onfocusout', function (e) {
-    console.log(" Blur!! ");
-    initiateDragging = false;
-    initiateMouseDown = false;
-    drawHorizontal = false;
-    drawVertical = true;
-  }, false);
   document.getElementById("vertical_btn").onclick = function () {
     initiateDragging = false;
     initiateMouseDown = false;
@@ -111,5 +104,16 @@ window.onload = () => {
     initiateDragging = true
     canvasBtnInstance = new CanvasButton(ctx, canvas);
   }
+
+
+  canvas.addEventListener('mousemove', onMouseMove, false);
+  canvas.addEventListener('mouseout', onMouseOut, false);
+  canvas.addEventListener('mousedown', onMouseDown, false);
+  canvas.addEventListener('mouseup', onMouseUp, false);
+
+  canvas.addEventListener("touchstart", onMouseDown, false);
+  canvas.addEventListener("touchend", onMouseUp, false);
+  canvas.addEventListener("touchcancel", onMouseOut, false);
+  canvas.addEventListener("touchmove", onMouseMove, false);
 
 }
